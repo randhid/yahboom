@@ -61,6 +61,7 @@ class yahboom(Arm, Reconfigurable):
         Returns:
             Pose: The location and orientation of the arm described as a Pose.
         """
+# look at kinpy to see if we can return a pose
         return Pose(0, 0, 0, 0, 0, 0)
 
     
