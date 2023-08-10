@@ -173,3 +173,4 @@ class yahboom(Arm, Reconfigurable):
         data = f.read()
         f.close()
         return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, data)
+        
