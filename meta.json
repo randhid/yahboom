@@ -1,0 +1,17 @@
+{
+  "module_id": "rand:yahboom",
+  "visibility": "public",
+  "url": "https://github.com/viam-labs/yahboom",
+  "description": "An arm and gripper from the yahboom dofbot",
+  "models": [
+    {
+      "api": "rdk:component:arm",
+      "model": "rand:yahboom:arm"
+    },
+    {
+      "api": "rdk:component:gripper",
+      "model" : "rand:yahboom:gripper"
+    }
+  ],
+  "entrypoint": "run.sh"
+}
