@@ -3,6 +3,7 @@ This module creates, validates and reconfigures a class to control and
 query the state of the yahboom dofbot arm for integration 
 and control through Viam.
 """
+from cmath import nan
 import time
 
 from typing import ClassVar, Mapping, Any, Dict, Optional, Tuple
@@ -26,7 +27,7 @@ LOGGER = getLogger(__name__)
 
 class yahboom(Arm, Reconfigurable):
     """ A yahboom dofot arm """
-    MODEL: ClassVar[Model] = Model(ModelFamily("viamlabs", "yahboom"), "arm")
+    MODEL: ClassVar[Model] = Model(ModelFamily("rand", "yahboom"), "arm")
 
     joint_positions = None
     my_chain = ikpy.chain.Chain.from_urdf_file("src/dofbot.urdf")
@@ -133,10 +134,11 @@ class yahboom(Arm, Reconfigurable):
         values = []
         for id in range(1, 6):
             val = await self.controller.read_servo(id)
+            if val is None:
+                val = 0
             values.append(val)
             time.sleep(0.01)
-        # LOGGER.info(f"joint values log: {values}")
-        self.joint_positions = values
+        LOGGER.debug(f"joint values log: {values}")
         return JointPositions(values=values)
 
     async def get_gripper_position(self):
@@ -165,6 +167,7 @@ class yahboom(Arm, Reconfigurable):
     async def get_kinematics(
         self,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         """
         Get the kinematics information associated with the arm.

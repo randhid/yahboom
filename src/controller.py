@@ -2,6 +2,7 @@
 
 from smbus2 import SMBus
 import time
+import math
 
 # address of arm on I2C bus
 ADDR = 0x15
@@ -14,7 +15,7 @@ class YahboomServoController:
     async def read_servo(self, id):
         if id < 1 or id > 6:
             print("id must be 1 - 5")
-            return None
+            return 0
         try:
             self.bus.write_byte_data(ADDR, id + 0x30, 0x0)
             time.sleep(0.003)
@@ -36,8 +37,8 @@ class YahboomServoController:
         if id == 2 or id == 3 or id == 4:
             pos = 180 - pos
         return pos
-    
-    async def write_all_servos(self, positions, time):
+
+    async def write_all_servos(self, positions, time):   
         s1, s2, s3, s4, s5, s6 = positions
 
         if s1 > 180 or s2 > 180 or s3 > 180 or s4 > 180 or s5 > 270 or s6 > 180:

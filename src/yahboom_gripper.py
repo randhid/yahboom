@@ -1,4 +1,4 @@
-from typing import ClassVar, Mapping, Any, Dict, Optional
+from typing import ClassVar, Mapping, Any, Dict, Optional, cast
 from typing_extensions import Self
 
 from viam.module.types import Reconfigurable
@@ -17,7 +17,7 @@ LOGGER = getLogger(__name__)
 
 class yahboom_gripper(Gripper, Reconfigurable):
     """ A yahboom dofbot gripper"""
-    MODEL: ClassVar[Model] = Model(ModelFamily("viamlabs", "yahboom"), "gripper")
+    MODEL: ClassVar[Model] = Model(ModelFamily("rand", "yahboom"), "gripper")
 
     # Constructor
     @classmethod
@@ -31,7 +31,6 @@ class yahboom_gripper(Gripper, Reconfigurable):
         Returns:
             class: yahboom_gripper
         """
-        LOGGER.info("new gripper")
         my_class = cls(config.name)
         my_class.reconfigure(config, dependencies)
         my_class.controller = YahboomServoController()
@@ -41,11 +40,10 @@ class yahboom_gripper(Gripper, Reconfigurable):
     @classmethod
     def validate(cls, config: ComponentConfig):
         """ Validate the gripper config fields """
-        LOGGER.info("new config gripper", config.attributes)
-        arm = config.attributes.fields["arm"].string_value
-        if arm == "":
+        arm_name = config.attributes.fields["arm"].string_value
+        if arm_name == "":
             raise Exception("An arm must be defined")
-        return
+        return arm_name
 
     # Handles attribute reconfiguration
     def reconfigure(
@@ -54,9 +52,11 @@ class yahboom_gripper(Gripper, Reconfigurable):
         dependencies: Mapping[ResourceName, ResourceBase]):
         """ Reconfigure the gripper according to a changed config """
         arm_name = config.attributes.fields["arm"].string_value
-        arm = dependencies[Arm.get_resource_name(arm_name)]
-        self.arm = cast(yahboom, arm)
-        LOGGER.info("here")
+        LOGGER.info(arm_name)
+        actual_arm = dependencies[Arm.get_resource_name(arm_name)]
+        # LOGGER.debug(actual_arm)
+        self.arm = cast(yahboom, actual_arm)
+        LOGGER.debug("reconfigured yahboom")
         return
 
     # Implement the methods the Viam RDK defines for the Gripper API (rdk:components:gripper)
