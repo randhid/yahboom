@@ -10,7 +10,7 @@ from viam.components.gripper import Gripper
 from viam.components.arm import Arm
 from viam.logging import getLogger
 
-from yahboom import yahboom
+from yahboom_arm import yahboom_arm
 from controller import YahboomServoController
 
 LOGGER = getLogger(__name__)
@@ -55,7 +55,7 @@ class yahboom_gripper(Gripper, Reconfigurable):
         LOGGER.info(arm_name)
         actual_arm = dependencies[Arm.get_resource_name(arm_name)]
         # LOGGER.debug(actual_arm)
-        self.arm = cast(yahboom, actual_arm)
+        self.arm = cast(yahboom_arm, actual_arm)
         LOGGER.debug("reconfigured yahboom")
         return
 
