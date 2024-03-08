@@ -10,8 +10,8 @@ from viam.components.gripper import Gripper
 from viam.components.arm import Arm
 from viam.logging import getLogger
 
-from .yahboom import yahboom
-from .controller import YahboomServoController
+from yahboom import yahboom
+from controller import YahboomServoController
 
 LOGGER = getLogger(__name__)
 

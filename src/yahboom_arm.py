@@ -18,14 +18,14 @@ from viam.resource.types import Model, ModelFamily
 from viam.components.arm import Arm, Pose, JointPositions, KinematicsFileFormat
 from viam.logging import getLogger
 
-from .controller import YahboomServoController
+from controller import YahboomServoController
 
 # adapted from
 # https://github.com/YahboomTechnology/dofbot-Pi/tree/master/11.Communication%20protocol%20and%20Python%20library/1.Install%20Python%20module
 
 LOGGER = getLogger(__name__)
 
-class yahboom(Arm, Reconfigurable):
+class yahboom_arm(Arm, Reconfigurable):
     """ A yahboom dofot arm """
     MODEL: ClassVar[Model] = Model(ModelFamily("rand", "yahboom"), "arm")
 

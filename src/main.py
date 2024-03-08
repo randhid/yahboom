@@ -12,8 +12,8 @@ from viam.components.arm import Arm
 from viam.components.gripper import Gripper
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 
-from .yahboom import yahboom
-from .yahboom_gripper import yahboom_gripper
+from yahboom_arm import yahboom_arm
+from yahboom_gripper import yahboom_gripper
 
 
 async def main():
