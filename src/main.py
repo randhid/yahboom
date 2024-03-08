@@ -24,8 +24,8 @@ async def main():
     """
 
     Registry.register_resource_creator(
-    Arm.SUBTYPE, yahboom.MODEL,
-    ResourceCreatorRegistration(yahboom.new, yahboom.validate)
+    Arm.SUBTYPE, yahboom_arm.MODEL,
+    ResourceCreatorRegistration(yahboom_arm.new, yahboom_arm.validate)
     )
     
     Registry.register_resource_creator(
@@ -35,7 +35,7 @@ async def main():
     ))
 
     module = Module.from_args()
-    module.add_model_from_registry(Arm.SUBTYPE, yahboom.MODEL)
+    module.add_model_from_registry(Arm.SUBTYPE, yahboom_arm.MODEL)
     module.add_model_from_registry(Gripper.SUBTYPE, yahboom_gripper.MODEL)
     await module.start()
 
