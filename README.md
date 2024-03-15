@@ -28,17 +28,15 @@ The arm requires no attirbutes to configure. Add an arm component from your modu
       "attributes": {},
       "depends_on": [],
       "type": "arm",
-      "name": "dofbot"
+      "name": "armie"
     },
     {
       "model": "rand:yahboom:gripper",
       "namespace": "rdk",
-      "attributes": {
-          "arm": "dofbot"
-      },
+      "attributes": {},
       "depends_on": [],
-      "type": "arm",
-      "name": "army"
+      "type": "gripper",
+      "name": "grippie"
     }
   ]
 }
