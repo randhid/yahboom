@@ -33,7 +33,9 @@ The arm requires no attirbutes to configure. Add an arm component from your modu
     {
       "model": "rand:yahboom:gripper",
       "namespace": "rdk",
-      "attributes": {},
+      "attributes": {
+          "arm" : "armie"
+      },
       "depends_on": [],
       "type": "gripper",
       "name": "grippie"
