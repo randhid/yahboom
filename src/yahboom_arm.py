@@ -29,7 +29,7 @@ class yahboom_arm(Arm, Reconfigurable):
     """ A yahboom dofot arm """
     MODEL: ClassVar[Model] = Model(ModelFamily("rand", "yahboom"), "arm")
 
-    joint_positions = None
+    joint_positions = JointPositions(values=[0,0,0,0,0,0])
     my_chain = ikpy.chain.Chain.from_urdf_file("src/dofbot.urdf")
     moving = False
 
