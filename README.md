@@ -4,7 +4,7 @@ This module interfaces with a Yahboom [Dofbot](https://category.yahboom.net/prod
 
 
 ## Capabilities
-The arm currently implements `get_joint_positions`, `move_to_joint_positions`, `stop` and `get_kinematics`. Other Viam Arm APIs will be added.
+The arm currently implements `get_joint_positions`, `move_to_joint_positions`, and `get_kinematics`. Other Viam Arm APIs will be added.
 The gripper implements all Viam Gripper APIs.
 
 
