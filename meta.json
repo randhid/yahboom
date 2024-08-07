@@ -1,7 +1,7 @@
 {
   "module_id": "rand:yahboom",
   "visibility": "public",
-  "url": "https://github.com/viam-labs/yahboom",
+  "url": "https://github.com/randhid/yahboom",
   "description": "An arm and gripper from the yahboom dofbot",
   "models": [
     {
